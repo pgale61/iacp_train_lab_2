@@ -21,7 +21,7 @@ locals {
 }
 
 resource "aws_subnet" "scalr_subnet" {
-  count        = local.subnets
+  count                     = local.subnets
     vpc_id                  = aws_vpc.scalr_vpc_dns.id
     availability_zone_id    = element(data.aws_availability_zones.azs.zone_ids,count.index)
     cidr_block = cidrsubnet(

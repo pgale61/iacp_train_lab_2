@@ -32,7 +32,7 @@ module "scalr_dynamic_vpc_dns" {
 }
 
 resource "aws_instance" "scalr" {
-  count                  = var.svr_count
+  count                  = length(module.scalr_dynamic_vpc_dns.subnet_ids)
   ami                    = data.aws_ami.the_ami.id
   instance_type          = var.instance_type
   subnet_id              = module.scalr_dynamic_vpc_dns.subnet_ids[count.index]
