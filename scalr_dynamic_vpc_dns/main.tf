@@ -16,6 +16,9 @@ data "aws_availability_zones" "azs" {
   state = "available"
 }
 
+# Conditional expresssions
+# expression ? true result : false result
+
 locals {
   subnets = var.max_subnets > 0 && var.max_subnets <= length(data.aws_availability_zones.azs.zone_ids) ? var.max_subnets : length(data.aws_availability_zones.azs.zone_ids) 
 }
